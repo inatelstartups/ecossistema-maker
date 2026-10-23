@@ -8,131 +8,192 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
-    <section id="maker" class="section">
-        <div class="container">
-
-            <!-- CABEÇALHO DA SEÇÃO -->
+    <!-- SECTION 4: UM ECOSSISTEMA DE OPORTUNIDADES MAKER -->
+    <section id="maker" class="section section-alt">
+        <div class="container reveal-on-scroll">
             <div class="section-header">
                 <h2>Ecossistema <span>Maker e Fígital</span></h2>
-                <p>Estrutura de ponta focada em viabilizar conexões, aprendizado ativo e suporte físico para criação de MVPs industriais, eletrônica e produção de mídias de alto impacto.</p>
+                <p>Estrutura focada em viabilizar conexões, gerar aprendizado ativo e fornecer o suporte físico ideal para criação de MVPs e mídias.</p>
             </div>
 
-            <!-- GRID DOS 3 ESPAÇOS MAKER -->
-            <div class="maker-grid">
-
+            <div class="grid-3">
                 <!-- CARD 1: FAB LAB -->
-                <div class="maker-card" data-space="fablab" tabindex="0" role="button" aria-haspopup="dialog">
-                    <div class="maker-card-img-wrap">
-                        <img src="elementos/fablab.jpg" alt="Fab Lab Inatel" class="maker-card-img">
-                        <span class="maker-card-badge">Rede MIT</span>
-                    </div>
-                    <div class="maker-card-body">
-                        <h3 class="maker-card-title">Fab Lab</h3>
-                        <p class="maker-card-desc">Laboratório de prototipagem no padrão da rede mundial do MIT. Estrutura completa com impressoras 3D, corte a laser, fresadoras de precisão e eletrônica para tirar sua ideia do papel.</p>
-                        <div class="maker-card-action">
-                            <span>Saiba mais</span>
-                            <svg class="maker-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </div>
+                <div class="maker-card" data-modal-target="fablab-modal">
+                    <img src="elementos/fablab.jpg" alt="FabLab Inatel">
+                    <div class="maker-content">
+                        <h3>Fab Lab</h3>
+                        <p>Laboratório de prototipagem no padrão da rede mundial do MIT. Estrutura completa com impressoras 3D, corte a laser, fresadoras de precisão e estamparia para tirar sua ideia do papel.</p>
+                        <button type="button" class="btn-link maker-trigger" data-target="fablab-modal">
+                            Saiba mais 
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
                     </div>
                 </div>
 
-                <!-- CARD 2: LABORATÓRIO DE IDEAÇÃO -->
-                <div class="maker-card" data-space="ideacao" tabindex="0" role="button" aria-haspopup="dialog">
-                    <div class="maker-card-img-wrap">
-                        <img src="elementos/lab_ideacao.jpg" alt="Laboratório de Ideação" class="maker-card-img">
-                        <span class="maker-card-badge">Design Thinking</span>
-                    </div>
-                    <div class="maker-card-body">
-                        <h3 class="maker-card-title">Laboratório de Ideação</h3>
-                        <p class="maker-card-desc">Ambiente lúdico e modular projetado para dinâmicas colaborativas. O espaço ideal para sessões de Design Thinking, brainstorming, workshops criativos e hackathons da sua startup.</p>
-                        <div class="maker-card-action">
-                            <span>Saiba mais</span>
-                            <svg class="maker-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </div>
+                <!-- CARD 2: LAB DE IDEAÇÃO -->
+                <div class="maker-card" data-modal-target="ideacao-modal">
+                    <img src="elementos/lab_ideacao.jpg" alt="Laboratório de Ideação">
+                    <div class="maker-content">
+                        <h3>Laboratório de Ideação</h3>
+                        <p>Ambiente lúdico e modular projetado para dinâmicas colaborativas. O espaço ideal para sessões de Design Thinking, brainstorming, workshops criativos e hackathons da sua startup.</p>
+                        <button type="button" class="btn-link maker-trigger" data-target="ideacao-modal">
+                            Saiba mais 
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
                     </div>
                 </div>
 
                 <!-- CARD 3: ESTÚDIO INATALKS -->
-                <div class="maker-card" data-space="inatalks" tabindex="0" role="button" aria-haspopup="dialog">
-                    <div class="maker-card-img-wrap">
-                        <img src="elementos/inatalks.png" alt="Estúdio Inatalks" class="maker-card-img">
-                        <span class="maker-card-badge">Gravação 4K</span>
-                    </div>
-                    <div class="maker-card-body">
-                        <h3 class="maker-card-title">Podcast Inatalks</h3>
-                        <p class="maker-card-desc">Estúdio profissional com infraestrutura de ponta para gravação de podcasts, videocasts e cursos. Produção audiovisual completa com suporte especializado e captação 4K.</p>
-                        <div class="maker-card-action">
-                            <span>Saiba mais</span>
-                            <svg class="maker-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </div>
+                <div class="maker-card" data-modal-target="inatalks-modal">
+                    <img src="elementos/inatalks.png" alt="Estúdio Inatalks">
+                    <div class="maker-content">
+                        <h3>Podcast Inatalks</h3>
+                        <p>Estúdio profissional com infraestrutura de ponta para gravação de podcasts, videocasts e cursos. Produção audiovisual completa com suporte especializado e captação 4K.</p>
+                        <button type="button" class="btn-link maker-trigger" data-target="inatalks-modal">
+                            Saiba mais 
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
 
-    <!-- ================= MODAL POP-UP (COMPATÍVEL COM MENU FIXO) ================= -->
-    <div id="maker-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="modal-content">
-            <!-- Botão de Fechar com destaque e acessibilidade -->
-            <button class="modal-close" id="maker-modal-close" aria-label="Fechar pop-up">&times;</button>
-            
+    <!-- ================= MODAL 1: FAB LAB (TEXTO EXATO DO SITE) ================= -->
+    <div id="fablab-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content" style="max-width: 650px;">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
             <div class="modal-header">
-                <span class="modal-badge" id="maker-modal-badge">Rede MIT</span>
-                <h3 id="maker-modal-title">Fab Lab Inatel</h3>
-                <p id="maker-modal-subtitle">Subtítulo explicativo</p>
+                <h3>Fab Lab</h3>
+                <p>Do conceito ao MVP</p>
             </div>
             
             <div class="modal-body">
-                <!-- Imagem do Espaço -->
-                <div class="maker-modal-img-wrap">
-                    <img id="maker-modal-img" class="maker-modal-img" src="" alt="Espaço Maker">
+                <div class="modal-img-banner" style="width: 100%; height: 200px; border-radius: 16px; overflow: hidden; margin-bottom: 8px;">
+                    <img src="elementos/fablab.jpg" alt="Fab Lab Inatel" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
 
-                <!-- Textos Explicativos -->
-                <div id="maker-modal-texts" class="maker-modal-texts">
-                    <!-- Renderizado dinamicamente via maker.js -->
+                <div class="modal-texts" style="display: flex; flex-direction: column; gap: 14px; font-size: 14.5px; color: var(--text-muted); line-height: 1.65;">
+                    <p>No FabLab Inatel, você encontra a infraestrutura necessária para transformar ideias em protótipos funcionais, e acelerar o desenvolvimento de produtos e soluções inovadoras.</p>
+                    <p>Acesse ferramentas, tecnologias e infraestrutura especializada para desenvolver, testar e validar suas ideias com mais rapidez. Disponibilidade de Impressoras 3D (ABS e PLA), centro de usinagem para Placas de Circuito Impresso - PCI, corte a laser e CNCs Router de pequeno e grande formato.</p>
                 </div>
 
-                <!-- Grid de Recursos e Equipamentos -->
-                <div class="maker-modal-section-title">Estrutura e Recursos Disponíveis</div>
-                <div id="maker-modal-features" class="maker-modal-features-grid">
-                    <!-- Renderizado dinamicamente via maker.js -->
-                </div>
-
-                <!-- Botões de Ação no Rodapé -->
-                <div class="maker-modal-footer">
-                    <a id="maker-modal-cta-primary" class="btn-maker-primary" href="#" target="_blank" rel="noopener">
-                        <span>Solicitar Atendimento</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </a>
-                    <a id="maker-modal-cta-secondary" class="btn-maker-secondary" href="#" target="_blank" rel="noopener">
-                        Dúvidas e Contato
+                <div style="margin-top: 24px; text-align: center;">
+                    <a href="https://inatel.br/startups/fablab/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width: 100%; justify-content: center;">
+                        Solicitação de Orçamento
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT DE INTERAÇÃO -->
+    <!-- ================= MODAL 2: LAB DE IDEAÇÃO ================= -->
+    <div id="ideacao-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content" style="max-width: 650px;">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <div class="modal-header">
+                <h3>Laboratório de Ideação</h3>
+                <p>Espaço modular e criativo para dinâmicas de ideação e inovação</p>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-img-banner" style="width: 100%; height: 200px; border-radius: 16px; overflow: hidden; margin-bottom: 8px;">
+                    <img src="elementos/lab_ideacao.jpg" alt="Laboratório de Ideação" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <div class="modal-texts" style="display: flex; flex-direction: column; gap: 14px; font-size: 14.5px; color: var(--text-muted); line-height: 1.65;">
+                    <p>Ambiente lúdico e modular projetado para dinâmicas colaborativas. O espaço ideal para sessões de Design Thinking, brainstorming, workshops criativos e hackathons da sua startup.</p>
+                    <p>Estrutura flexível para acomodar dinâmicas de grupo, apresentações e maratonas de ideação com suporte técnico e metodológico da equipe Inatel Startups.</p>
+                </div>
+
+                <div style="margin-top: 24px; text-align: center;">
+                    <a href="mailto:startups@inatel.br?subject=Reserva%20de%20Espa%C3%A7o%20-%20Laborat%C3%B3rio%20de%20Idea%C3%A7%C3%A3o" class="btn-primary" style="width: 100%; justify-content: center;">
+                        Reservar Espaço de Ideação
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 3: ESTÚDIO INATALKS (TEXTO EXATO DO SITE) ================= -->
+    <div id="inatalks-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content" style="max-width: 750px;">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <div class="modal-header">
+                <h3>Estúdio Inatalks</h3>
+                <p>Produção audiovisual de alta fidelidade no campus Inatel e digital</p>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-grid">
+                    <div>
+                        <div class="modal-section-title">O que oferecemos</div>
+                        <div class="modal-list-item" style="margin-bottom: 8px;">
+                            <strong>Podcasts e Videocasts</strong>
+                            <p>Captação multi-câmera em resolução 4K Ultra HD e gravação de áudio de alta fidelidade.</p>
+                        </div>
+                        <div class="modal-list-item" style="margin-bottom: 8px;">
+                            <strong>Cursos</strong>
+                            <p>Infraestrutura e estabilidade técnica recomendadas para gravação de videoaulas e EAD.</p>
+                        </div>
+                        <div class="modal-list-item">
+                            <strong>Entrevistas</strong>
+                            <p>Ambiente profissional estruturado e confortável para receber convidados e especialistas.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="modal-section-title">Estrutura Completa</div>
+                        <div class="modal-list-item" style="margin-bottom: 8px;">
+                            <strong>Equipamentos e Tecnologia</strong>
+                            <p>Microfones Shure (padrão ouro do mercado), câmeras 4K e projeto de iluminação profissional.</p>
+                        </div>
+                        <div class="modal-list-item" style="margin-bottom: 8px;">
+                            <strong>Conforto</strong>
+                            <p>Lounge climatizado para convivência e suporte técnico "hands-on" em tempo integral.</p>
+                        </div>
+                        <div class="modal-list-item">
+                            <strong>Agilidade</strong>
+                            <p>Processo de gravação dinâmico e otimizado para maximizar o tempo do founder.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 12px;">
+                    <div class="modal-section-title">Produção com Especialistas</div>
+                    <div class="modal-grid">
+                        <div class="modal-list-item">
+                            <strong>Pré-produção</strong>
+                            <p>Planejamento técnico prévio e avaliação crítica de roteiro.</p>
+                        </div>
+                        <div class="modal-list-item">
+                            <strong>Direção em Estúdio</strong>
+                            <p>Orientação profissional durante a captação para obter o melhor desempenho.</p>
+                        </div>
+                    </div>
+                    <div class="modal-list-item" style="margin-top: 12px; border-color: var(--primary);">
+                        <strong>Entrega Imediata</strong>
+                        <p>Você sai da sessão com todos os arquivos brutos em alta resolução copiados, prontos para sua edição.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; text-align: center;">
+                    <a href="mailto:startups@inatel.br?subject=Reserva%20de%20Est%C3%BAdio%20-%20Inatalks" class="btn-primary" style="width: 100%; justify-content: center;">
+                        Solicitar Reserva do Estúdio
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
     <script src="maker.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* ======================================================================
    INATEL STARTUPS — ECOSSISTEMA MAKER E FÍGITAL
-   Layout com Modal Pop-up Compatível com Menus Fixos
+   Layout 100% fiel ao site oficial com Pop-up compatível com Menus Fixos
    ====================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
@@ -10,14 +10,12 @@
     --primary-hover: #ff7a29;
     --secondary: #2563EB;
     --secondary-rgb: 37, 99, 235;
-    --bg-main: #060B1E;
+    --bg-main: #0B0F19;
     --bg-card: rgba(255, 255, 255, 0.02);
-    --bg-card-hover: rgba(255, 255, 255, 0.04);
     --border-color: rgba(255, 255, 255, 0.08);
-    --text-light: #f8fafc;
-    --text-muted: #94a3b8;
-    --card-radius: 20px;
-    --menu-height: 140px; /* Altura combinada dos cabeçalhos fixos */
+    --text-light: #F8FAFC;
+    --text-muted: #94A3B8;
+    --text-blue: #60A5FA;
 }
 
 * {
@@ -37,30 +35,26 @@ body {
 
 /* ================= SECTION CONTAINER ================= */
 .section {
-    padding: 60px 0 50px 0;
+    padding: 64px 0;
     position: relative;
     background: transparent;
     width: 100%;
 }
 
+.section-alt {
+    background: rgba(255, 255, 255, 0.01);
+}
+
 .container {
-    max-width: 1240px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-@media (min-width: 640px) {
-    .container { padding: 0 32px; }
-}
-
-@media (min-width: 1024px) {
-    .container { padding: 0 40px; }
-}
-
-/* ================= HEADER ================= */
+/* ================= SECTION HEADER ================= */
 .section-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
     position: relative;
     z-index: 2;
 }
@@ -86,154 +80,134 @@ body {
 }
 
 @media (max-width: 640px) {
-    .section { padding: 40px 0 30px 0; }
-    .section-header { margin-bottom: 28px; }
+    .section { padding: 40px 0; }
+    .section-header { margin-bottom: 32px; }
     .section-header h2 { font-size: 1.85rem; }
     .section-header p { font-size: 14px; }
 }
 
-/* ================= MAKER CARDS GRID ================= */
-.maker-grid {
+/* ================= GRID 3 ================= */
+.grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 30px;
     position: relative;
     z-index: 2;
 }
 
 @media (max-width: 900px) {
-    .maker-grid {
+    .grid-3 {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 24px;
     }
 }
 
-/* ================= MAKER CARD ================= */
+/* ================= MAKER CARD (ESTILO EXATO DO SITE) ================= */
 .maker-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: var(--card-radius);
+    border-radius: 28px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    min-height: 480px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    justify-content: flex-start;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.maker-card img {
     position: relative;
-    user-select: none;
-}
-
-.maker-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 94, 0, 0.4);
-    background: var(--bg-card-hover);
-    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
-}
-
-.maker-card:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 3px;
-}
-
-.maker-card-img-wrap {
     width: 100%;
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    background: #020617;
-}
-
-.maker-card-img {
-    width: 100%;
-    height: 100%;
+    height: 180px;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
+    transition: transform 0.8s ease;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
 }
 
-.maker-card:hover .maker-card-img {
-    transform: scale(1.05);
+.maker-card:hover img {
+    transform: scale(1.06);
 }
 
-.maker-card-badge {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 5px 12px;
-    border-radius: 999px;
-    background: rgba(6, 11, 30, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #ffffff;
-}
-
-.maker-card-body {
-    padding: 24px 24px 20px 24px;
+.maker-content {
+    padding: 24px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    justify-content: flex-start;
 }
 
-.maker-card-title {
-    font-size: 1.35rem;
+.maker-card h3 {
+    font-size: 20px;
     font-weight: 800;
-    color: #ffffff;
+    color: white;
     margin-bottom: 8px;
-    letter-spacing: -0.01em;
 }
 
-.maker-card-desc {
-    font-size: 14px;
+.maker-card p {
     color: var(--text-muted);
-    line-height: 1.55;
+    font-size: 14px;
+    line-height: 1.65;
     margin-bottom: 20px;
     flex-grow: 1;
 }
 
-.maker-card-action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    font-size: 13px;
+.maker-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.maker-card .btn-link {
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 13.5px;
     font-weight: 700;
-    color: #cbd5e1;
-    transition: all 0.25s ease;
+    color: var(--text-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    border-bottom: 1.5px solid transparent;
+    padding-bottom: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
 }
 
-.maker-card:hover .maker-card-action {
-    color: #ffffff;
+.maker-card:hover .btn-link,
+.maker-card .btn-link:hover {
+    color: white;
+    border-bottom-color: var(--primary);
 }
 
-.maker-card-action svg {
-    color: var(--primary);
-    transition: transform 0.25s ease;
+.maker-card .btn-link svg {
+    transition: transform 0.3s ease;
 }
 
-.maker-card:hover .maker-card-action svg {
+.maker-card:hover .btn-link svg,
+.maker-card .btn-link:hover svg {
     transform: translateX(4px);
 }
 
-/* ======================================================================
-   MODAL POP-UP (COMPATÍVEL COM MENUS FIXOS)
-   Garante que o pop-up NUNCA fique atrás dos menus superiores (~140px)
-   ====================================================================== */
+/* ================= INTERACTIVE POPUP MODALS ================= */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    z-index: 999999; /* Z-index máximo para garantir visibilidade */
-    background: rgba(3, 7, 20, 0.85);
+    background: rgba(2, 6, 23, 0.85);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     display: flex;
+    align-items: flex-start; /* Alinha abaixo dos menus fixos */
     justify-content: center;
-    align-items: flex-start; /* Alinhamento ao topo com margem segura */
-    padding-top: 155px;      /* ESPAÇO SEGURO: Abre estritamente abaixo dos menus fixos (140px) */
+    z-index: 999999;
+    padding-top: 155px;      /* ESPAÇO SEGURO: Abre estritamente abaixo do cabeçalho e menu (~140px) */
     padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
@@ -241,10 +215,9 @@ body {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Quando executado dentro de frame embutido */
 body.in-iframe .modal-overlay {
     padding-top: 30px;
     align-items: center;
@@ -257,253 +230,148 @@ body.in-iframe .modal-overlay {
 }
 
 .modal-content {
-    background: #0B132B;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
     border-radius: 28px;
-    padding: 38px 40px;
-    max-width: 740px;
+    padding: 40px;
+    max-width: 650px;
     width: 100%;
     max-height: calc(100vh - 190px);
     overflow-y: auto;
     position: relative;
-    transform: scale(0.93) translateY(-10px);
+    transform: scale(0.92);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 94, 0, 0.08);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
     color: var(--text-light);
 }
 
 .modal-overlay.open .modal-content {
-    transform: scale(1) translateY(0);
+    transform: scale(1);
 }
 
-/* Scrollbar estilizada */
-.modal-content::-webkit-scrollbar {
-    width: 6px;
-}
-.modal-content::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 10px;
-}
-.modal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-}
-
-/* Botão de Fechar */
 .modal-close {
     position: absolute;
     top: 24px;
     right: 24px;
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 24px;
-    line-height: 1;
-    transition: all 0.25s ease;
+    font-size: 18px;
+    transition: all 0.3s;
     z-index: 5;
 }
 
 .modal-close:hover {
-    background: rgba(255, 94, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
     border-color: var(--primary);
-    color: #ffffff;
-    transform: rotate(90deg);
+    box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.5);
 }
 
-/* Cabeçalho do Modal */
 .modal-header {
-    padding-right: 48px;
-    margin-bottom: 22px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-bottom: 18px;
-}
-
-.modal-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 4px 12px;
-    border-radius: 999px;
-    background: rgba(255, 94, 0, 0.15);
-    border: 1px solid rgba(255, 94, 0, 0.35);
-    color: #ff914d;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
+    padding-right: 40px;
 }
 
 .modal-header h3 {
-    font-size: 1.85rem;
+    font-size: 28px;
     font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 6px;
-    letter-spacing: -0.02em;
+    color: white;
 }
 
 .modal-header p {
-    font-size: 14.5px;
-    color: var(--text-muted);
+    color: var(--text-blue);
+    font-size: 14px;
+    margin-top: 6px;
     line-height: 1.55;
 }
 
-/* Imagem do Espaço no Modal */
-.maker-modal-img-wrap {
-    width: 100%;
-    height: 260px;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: #020617;
-}
-
-.maker-modal-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Parágrafos do Modal */
-.maker-modal-texts {
+.modal-body {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 20px;
 }
 
-.maker-modal-texts p {
-    font-size: 14.5px;
-    color: #cbd5e1;
-    line-height: 1.65;
-}
-
-/* Recursos / Features */
-.maker-modal-section-title {
-    font-size: 11.5px;
+.modal-section-title {
+    font-size: 14px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 1px;
     color: var(--primary);
-    margin-bottom: 14px;
+    margin-bottom: 8px;
 }
 
-.maker-modal-features-grid {
+/* Grid para modal de 2 colunas (Inatalks) */
+.modal-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 26px;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
-@media (max-width: 640px) {
-    .maker-modal-features-grid {
-        grid-template-columns: 1fr;
+@media (min-width: 600px) {
+    .modal-grid {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
-.maker-modal-feature-item {
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+.modal-list-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
     border-radius: 14px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-}
-
-.maker-modal-feature-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    background: rgba(255, 94, 0, 0.1);
-    border: 1px solid rgba(255, 94, 0, 0.2);
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.maker-modal-feature-text strong {
-    display: block;
+    padding: 16px;
     font-size: 14px;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 2px;
 }
 
-.maker-modal-feature-text span {
-    font-size: 13px;
+.modal-list-item strong {
+    color: var(--text-blue);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.modal-list-item p {
     color: var(--text-muted);
-    line-height: 1.45;
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin: 0;
 }
 
-/* Rodapé do Modal */
-.maker-modal-footer {
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.btn-maker-primary {
-    background: linear-gradient(135deg, var(--primary) 0%, #ff7a29 100%);
-    color: #ffffff;
-    font-size: 14.5px;
+/* Botão Primário do Modal */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    font-size: 14px;
     font-weight: 700;
     padding: 14px 28px;
     border-radius: 999px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     border: none;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.35);
+    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.35);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-maker-primary:hover {
+.btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(var(--primary-rgb), 0.5);
 }
 
-.btn-maker-primary svg {
-    transition: transform 0.25s ease;
+.btn-primary svg {
+    transition: transform 0.3s;
 }
 
-.btn-maker-primary:hover svg {
+.btn-primary:hover svg {
     transform: translateX(4px);
-}
-
-.btn-maker-secondary {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #cbd5e1;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 13px 22px;
-    border-radius: 999px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.25s ease;
-}
-
-.btn-maker-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #ffffff;
-    color: #ffffff;
-    transform: translateY(-2px);
 }
 
 /* Responsividade Mobile */
@@ -514,20 +382,11 @@ body.in-iframe .modal-overlay {
         padding-right: 14px;
     }
     .modal-content {
-        padding: 24px 18px;
+        padding: 26px 20px;
         border-radius: 20px;
         max-height: calc(100vh - 140px);
     }
-    .maker-modal-img-wrap {
-        height: 180px;
-    }
-    .maker-modal-footer {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .btn-maker-primary,
-    .btn-maker-secondary {
-        justify-content: center;
-        width: 100%;
+    .modal-header h3 {
+        font-size: 22px;
     }
 }
