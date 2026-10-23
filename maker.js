@@ -1,10 +1,15 @@
-/**
- * INATEL STARTUPS — ECOSSISTEMA MAKER E FÍGITAL
- * Layout com Expansão Inline (In-Place Drawer)
- * Sem modais flutuantes / Totalmente imune a menus fixos
- */
+/* ======================================================================
+   INATEL STARTUPS — ECOSSISTEMA MAKER E FÍGITAL
+   Lógica do Modal Pop-up Compatível com Menus Fixos
+   ====================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Detecta se está sendo executado dentro de um <iframe>
+    const isInIframe = window.self !== window.top;
+    if (isInIframe) {
+        document.body.classList.add('in-iframe');
+    }
+
     // Dados detalhados dos espaços do Ecossistema Maker
     const makerData = {
         fablab: {
@@ -123,70 +128,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Elementos DOM
+    // Elementos DOM do Modal
+    const modalOverlay = document.getElementById('maker-modal');
+    const modalBadge = document.getElementById('maker-modal-badge');
+    const modalTitle = document.getElementById('maker-modal-title');
+    const modalSubtitle = document.getElementById('maker-modal-subtitle');
+    const modalImg = document.getElementById('maker-modal-img');
+    const modalTexts = document.getElementById('maker-modal-texts');
+    const modalFeatures = document.getElementById('maker-modal-features');
+    const modalCtaPrimary = document.getElementById('maker-modal-cta-primary');
+    const modalCtaSecondary = document.getElementById('maker-modal-cta-secondary');
+    const modalCloseBtn = document.getElementById('maker-modal-close');
+
+    // Cards clicáveis
     const cards = document.querySelectorAll('.maker-card');
-    const drawer = document.getElementById('inline-maker-drawer');
-    const panelInner = document.getElementById('maker-panel-inner');
-    const panelClose = document.getElementById('maker-panel-close');
-    const panelBadge = document.getElementById('maker-panel-badge');
-    const panelTitle = document.getElementById('maker-panel-title');
-    const panelSubtitle = document.getElementById('maker-panel-subtitle');
-    const panelImage = document.getElementById('maker-panel-image');
-    const panelTexts = document.getElementById('maker-panel-texts');
-    const panelFeatures = document.getElementById('maker-panel-features');
-    const panelCtaPrimary = document.getElementById('maker-panel-cta-primary');
-    const panelCtaSecondary = document.getElementById('maker-panel-cta-secondary');
 
-    let activeKey = null;
-
-    // Função de auto-redimensionamento do iFrame
+    // Comunicação com página hospedeira (Auto-resize)
     function notifyParentResize() {
+        if (!isInIframe) return;
         try {
             const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-            if (window.parent && window.parent !== window) {
-                window.parent.postMessage({
-                    type: 'inatel-maker-resize',
-                    height: height
-                }, '*');
-            }
-        } catch (e) {
-            // Contexto cross-origin restrito
-        }
+            window.parent.postMessage({
+                type: 'inatel-maker-resize',
+                height: height
+            }, '*');
+        } catch (e) {}
     }
 
-    // ResizeObserver monitora mudanças de altura do documento
-    const resizeObserver = new ResizeObserver(() => {
-        notifyParentResize();
-    });
-    resizeObserver.observe(document.body);
-    window.addEventListener('resize', notifyParentResize);
+    // Abre o pop-up com os dados do espaço selecionado
+    function openModal(spaceKey) {
+        const data = makerData[spaceKey];
+        if (!data || !modalOverlay) return;
 
-    // Escuta pedido explícito da página pai
-    window.addEventListener('message', (event) => {
-        if (event.data === 'request-inatel-maker-resize' || (event.data && event.data.type === 'request-inatel-maker-resize')) {
-            notifyParentResize();
-        }
-    });
+        modalBadge.textContent = data.badge;
+        modalTitle.textContent = data.title;
+        modalSubtitle.textContent = data.subtitle;
 
-    // Renderiza dados no painel inline
-    function renderDrawer(data) {
-        panelBadge.textContent = data.badge;
-        panelTitle.textContent = data.title;
-        panelSubtitle.textContent = data.subtitle;
+        modalImg.src = data.image;
+        modalImg.alt = data.imageAlt;
 
-        panelImage.src = data.image;
-        panelImage.alt = data.imageAlt;
+        // Renderiza textos
+        modalTexts.innerHTML = data.paragraphs.map(p => `<p>${p}</p>`).join('');
 
-        // Parágrafos
-        panelTexts.innerHTML = data.paragraphs.map(p => `<p>${p}</p>`).join('');
-
-        // Features Grid
-        panelFeatures.innerHTML = data.features.map(f => `
-            <div class="maker-feature-item">
-                <div class="maker-feature-icon">
-                    ${f.icon}
-                </div>
-                <div class="maker-feature-text">
+        // Renderiza features
+        modalFeatures.innerHTML = data.features.map(f => `
+            <div class="maker-modal-feature-item">
+                <div class="maker-modal-feature-icon">${f.icon}</div>
+                <div class="maker-modal-feature-text">
                     <strong>${f.title}</strong>
                     <span>${f.desc}</span>
                 </div>
@@ -194,119 +182,90 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
 
         // CTAs
-        panelCtaPrimary.textContent = data.ctaPrimaryText;
-        panelCtaPrimary.href = data.ctaPrimaryUrl;
-        
-        // Adiciona ícone de seta no CTA primário
-        const arrowSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        arrowSvg.setAttribute('width', '18');
-        arrowSvg.setAttribute('height', '18');
-        arrowSvg.setAttribute('viewBox', '0 0 24 24');
-        arrowSvg.setAttribute('fill', 'none');
-        arrowSvg.setAttribute('stroke', 'currentColor');
-        arrowSvg.setAttribute('stroke-width', '2');
-        arrowSvg.setAttribute('stroke-linecap', 'round');
-        arrowSvg.setAttribute('stroke-linejoin', 'round');
-        arrowSvg.innerHTML = '<line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>';
-        panelCtaPrimary.appendChild(arrowSvg);
+        modalCtaPrimary.innerHTML = `
+            <span>${data.ctaPrimaryText}</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        `;
+        modalCtaPrimary.href = data.ctaPrimaryUrl;
 
-        panelCtaSecondary.textContent = data.ctaSecondaryText;
-        panelCtaSecondary.href = data.ctaSecondaryUrl;
+        modalCtaSecondary.textContent = data.ctaSecondaryText;
+        modalCtaSecondary.href = data.ctaSecondaryUrl;
+
+        // Exibe modal
+        modalOverlay.classList.add('open');
+        modalOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = isInIframe ? '' : 'hidden';
+
+        // Notifica o iframe pai para acomodar o pop-up
+        if (isInIframe) {
+            window.parent.postMessage({
+                type: 'inatel-maker-modal-opened',
+                height: 920
+            }, '*');
+        }
     }
 
-    // Abre o painel inline para a chave solicitada
-    function openDrawer(key) {
-        const data = makerData[key];
-        if (!data) return;
+    // Fecha o modal
+    function closeModal() {
+        if (!modalOverlay) return;
+        modalOverlay.classList.remove('open');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
 
-        activeKey = key;
-
-        // Atualiza estado visual dos cards
-        cards.forEach(card => {
-            const cardKey = card.getAttribute('data-space');
-            if (cardKey === key) {
-                card.classList.add('active');
-                card.setAttribute('aria-expanded', 'true');
-            } else {
-                card.classList.remove('active');
-                card.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        // Atualiza conteúdo
-        renderDrawer(data);
-
-        // Abre o drawer suavemente
-        drawer.classList.add('open');
-        drawer.setAttribute('aria-hidden', 'false');
-
-        // Notifica redimensionamento durante e após a transição
-        notifyParentResize();
-        setTimeout(notifyParentResize, 150);
-        setTimeout(notifyParentResize, 350);
-        setTimeout(notifyParentResize, 550);
-
-        // Suave scroll para manter o painel visível dentro do frame
-        setTimeout(() => {
-            drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
-    }
-
-    // Fecha o painel inline
-    function closeDrawer() {
-        activeKey = null;
-
-        cards.forEach(card => {
-            card.classList.remove('active');
-            card.setAttribute('aria-expanded', 'false');
-        });
-
-        drawer.classList.remove('open');
-        drawer.setAttribute('aria-hidden', 'true');
-
-        notifyParentResize();
-        setTimeout(notifyParentResize, 200);
-        setTimeout(notifyParentResize, 550);
+        if (isInIframe) {
+            window.parent.postMessage({
+                type: 'inatel-maker-modal-closed'
+            }, '*');
+            notifyParentResize();
+        }
     }
 
     // Listeners nos cards
     cards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            const key = card.getAttribute('data-space');
-            if (activeKey === key) {
-                // Clique no card que já está aberto: fecha
-                closeDrawer();
-            } else {
-                openDrawer(key);
-            }
+        card.addEventListener('click', () => {
+            const spaceKey = card.getAttribute('data-space');
+            openModal(spaceKey);
         });
 
-        // Acessibilidade por teclado (Enter ou Espaço)
         card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                const key = card.getAttribute('data-space');
-                if (activeKey === key) {
-                    closeDrawer();
-                } else {
-                    openDrawer(key);
-                }
+                const spaceKey = card.getAttribute('data-space');
+                openModal(spaceKey);
             }
         });
     });
 
-    // Botão de fechar do painel
-    if (panelClose) {
-        panelClose.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeDrawer();
+    // Fechar pelo botão X
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeModal);
+    }
+
+    // Fechar ao clicar no backdrop (fora da caixa de conteúdo)
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
         });
     }
 
-    // Dispara redimensionamento inicial após carregar imagens
-    window.addEventListener('load', () => {
-        notifyParentResize();
-        setTimeout(notifyParentResize, 300);
+    // Fechar com a tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('open')) {
+            closeModal();
+        }
     });
+
+    // ResizeObserver
+    const resizeObserver = new ResizeObserver(() => {
+        notifyParentResize();
+    });
+    resizeObserver.observe(document.body);
+    window.addEventListener('resize', notifyParentResize);
+
     notifyParentResize();
 });

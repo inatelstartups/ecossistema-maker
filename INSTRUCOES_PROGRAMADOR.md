@@ -1,12 +1,12 @@
-# Ecossistema Maker e Fígital — Inatel Startups (Guia de Implementação)
+# Ecossistema Maker e Fígital — Inatel Startups (Guia do Programador)
 
-Este módulo contém a seção **Ecossistema Maker e Fígital (Fab Lab, Laboratório de Ideação e Podcast Inatalks)** do Inatel Startups, desenvolvida com **layout expansível inline (in-place drawer)**.
+Este módulo contém a seção **Ecossistema Maker e Fígital (Fab Lab, Laboratório de Ideação e Podcast Inatalks)** do Inatel Startups, com pop-up modal projetado especificamente para **funcionar em harmonia com os menus e cabeçalhos fixos institucionais do Inatel**.
 
-> **Por que este layout resolve os problemas anteriores:** Em vez de abrir pop-ups modais flutuantes que ficavam encobertos pelos cabeçalhos fixos do site (ou cortados dentro de frames), ao clicar em qualquer card os detalhes se expandem suavemente **dentro da própria seção**. O script avisa a página mãe via `postMessage` para aumentar a altura do frame em tempo real, sem jamais colidir com os menus fixos.
+> **Compatibilidade com o Menu Fixo:** O pop-up modal foi ajustado com posicionamento superior seguro (`padding-top: 155px`), abrindo **estritamente abaixo dos menus fixos do topo da página (~140px)**. Isso garante que o título do pop-up e o botão de fechar (`&times;`) fiquem 100% visíveis, sem jamais ficarem escondidos sob os cabeçalhos.
 
 ---
 
-## 🔗 Links Oficiais do Projeto
+## 🔗 Links Oficiais
 
 - **URL do Frame (GitHub Pages):** [https://inatelstartups.github.io/ecossistema-maker/](https://inatelstartups.github.io/ecossistema-maker/)
 - **Repositório GitHub:** [https://github.com/inatelstartups/ecossistema-maker](https://github.com/inatelstartups/ecossistema-maker)
@@ -15,7 +15,7 @@ Este módulo contém a seção **Ecossistema Maker e Fígital (Fab Lab, Laborat�
 
 ## ⚡ Opção 1 (Recomendada): Inserir via Embed (`<iframe>`)
 
-Basta colar o trecho abaixo no local onde a seção deve ser exibida no site:
+Basta colar o trecho abaixo no local onde a faixa deve aparecer:
 
 ```html
 <!-- ECOSSISTEMA MAKER E FÍGITAL — INATEL STARTUPS -->
@@ -32,13 +32,19 @@ Basta colar o trecho abaixo no local onde a seção deve ser exibida no site:
 </div>
 
 <script>
-    // Ajusta automaticamente a altura do frame em tempo real ao abrir/fechar detalhes
     window.addEventListener('message', function (event) {
-        if (event.data && event.data.type === 'inatel-maker-resize' && event.data.height) {
-            var iframe = document.getElementById('inatel-maker-iframe');
-            if (iframe) {
-                iframe.style.height = event.data.height + 'px';
-            }
+        if (!event.data) return;
+        var iframe = document.getElementById('inatel-maker-iframe');
+        if (!iframe) return;
+
+        if (event.data.type === 'inatel-maker-resize' && event.data.height) {
+            iframe.style.height = event.data.height + 'px';
+        }
+        if (event.data.type === 'inatel-maker-modal-opened') {
+            iframe.style.height = Math.max(920, event.data.height || 920) + 'px';
+        }
+        if (event.data.type === 'inatel-maker-modal-closed') {
+            iframe.style.height = '580px';
         }
     });
 </script>
@@ -46,10 +52,10 @@ Basta colar o trecho abaixo no local onde a seção deve ser exibida no site:
 
 ---
 
-## 🧩 Opção 2: Integração Direta no Código-Fonte
+## 🧩 Opção 2: Inclusão Direta no Código-Fonte
 
-Caso prefira incorporar diretamente no código da página sem `<iframe>`:
-1. **HTML:** Copie a `<section id="maker" class="section">...</section>` do arquivo `index.html`.
+Caso prefira colar o código diretamente no tema/página:
+1. **HTML:** Copie a `<section id="maker" class="section">...</section>` e o `<div id="maker-modal" class="modal-overlay">...</div>` do arquivo `index.html`.
 2. **CSS:** Adicione os estilos de `style.css`.
 3. **Imagens:** Certifique-se de que a pasta `elementos/` (`fablab.jpg`, `lab_ideacao.jpg`, `inatalks.png`) esteja acessível no caminho relativo correspondente.
-4. **JS:** Inclua o script `maker.js` antes do fechamento do `</body>`.
+4. **JS:** Adicione `maker.js` antes do fechamento da tag `</body>`.

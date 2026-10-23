@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -25,120 +25,114 @@
             <div class="maker-grid">
 
                 <!-- CARD 1: FAB LAB -->
-                <div class="maker-card" data-space="fablab" tabindex="0" role="button" aria-expanded="false" aria-controls="inline-maker-drawer">
+                <div class="maker-card" data-space="fablab" tabindex="0" role="button" aria-haspopup="dialog">
                     <div class="maker-card-img-wrap">
                         <img src="elementos/fablab.jpg" alt="Fab Lab Inatel" class="maker-card-img">
                         <span class="maker-card-badge">Rede MIT</span>
                     </div>
                     <div class="maker-card-body">
                         <h3 class="maker-card-title">Fab Lab</h3>
-                        <p class="maker-card-desc">Laboratório oficial de prototipagem no padrão MIT. Impressoras 3D, cortes a laser de alta precisão e fresadoras para tirar sua solução do papel.</p>
+                        <p class="maker-card-desc">Laboratório de prototipagem no padrão da rede mundial do MIT. Estrutura completa com impressoras 3D, corte a laser, fresadoras de precisão e eletrônica para tirar sua ideia do papel.</p>
                         <div class="maker-card-action">
-                            <span>Ver estrutura e máquinas</span>
-                            <svg class="maker-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
+                            <span>Saiba mais</span>
+                            <svg class="maker-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- CARD 2: LABORATÓRIO DE IDEAÇÃO -->
-                <div class="maker-card" data-space="ideacao" tabindex="0" role="button" aria-expanded="false" aria-controls="inline-maker-drawer">
+                <div class="maker-card" data-space="ideacao" tabindex="0" role="button" aria-haspopup="dialog">
                     <div class="maker-card-img-wrap">
                         <img src="elementos/lab_ideacao.jpg" alt="Laboratório de Ideação" class="maker-card-img">
                         <span class="maker-card-badge">Design Thinking</span>
                     </div>
                     <div class="maker-card-body">
                         <h3 class="maker-card-title">Laboratório de Ideação</h3>
-                        <p class="maker-card-desc">Ambiente lúdico e modular projetado para dinâmicas de colaboração. Ideal para sprints de Design Thinking, ideação e hackathons da sua equipe.</p>
+                        <p class="maker-card-desc">Ambiente lúdico e modular projetado para dinâmicas colaborativas. O espaço ideal para sessões de Design Thinking, brainstorming, workshops criativos e hackathons da sua startup.</p>
                         <div class="maker-card-action">
-                            <span>Ver metodologia e espaço</span>
-                            <svg class="maker-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
+                            <span>Saiba mais</span>
+                            <svg class="maker-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- CARD 3: ESTÚDIO INATALKS -->
-                <div class="maker-card" data-space="inatalks" tabindex="0" role="button" aria-expanded="false" aria-controls="inline-maker-drawer">
+                <div class="maker-card" data-space="inatalks" tabindex="0" role="button" aria-haspopup="dialog">
                     <div class="maker-card-img-wrap">
                         <img src="elementos/inatalks.png" alt="Estúdio Inatalks" class="maker-card-img">
                         <span class="maker-card-badge">Gravação 4K</span>
                     </div>
                     <div class="maker-card-body">
                         <h3 class="maker-card-title">Podcast Inatalks</h3>
-                        <p class="maker-card-desc">Estúdio profissional com captação 4K, microfones Shure broadcast e lounge confortável para podcasts, videocasts e cursos de alta relevância.</p>
+                        <p class="maker-card-desc">Estúdio profissional com infraestrutura de ponta para gravação de podcasts, videocasts e cursos. Produção audiovisual completa com suporte especializado e captação 4K.</p>
                         <div class="maker-card-action">
-                            <span>Conhecer estúdio e reserva</span>
-                            <svg class="maker-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- PAINEL EXPANSÍVEL INLINE (IN-PLACE DRAWER) -->
-            <!-- Totalmente integrado ao fluxo da página, sem z-index flutuante -->
-            <div id="inline-maker-drawer" class="inline-maker-drawer" aria-hidden="true">
-                <div id="maker-panel-inner" class="maker-panel-inner">
-                    
-                    <!-- Topo do Painel -->
-                    <div class="maker-panel-header">
-                        <div class="maker-panel-title-wrap">
-                            <div class="maker-panel-title-row">
-                                <h3 id="maker-panel-title" class="maker-panel-title">Título do Espaço</h3>
-                                <span id="maker-panel-badge" class="maker-panel-badge">Badge</span>
-                            </div>
-                            <p id="maker-panel-subtitle" class="maker-panel-subtitle">Subtítulo explicativo do espaço</p>
-                        </div>
-                        <button id="maker-panel-close" class="maker-panel-close" type="button" aria-label="Fechar detalhes do espaço">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Imagem de Destaque -->
-                    <div class="maker-panel-image-wrap">
-                        <img id="maker-panel-image" class="maker-panel-image" src="" alt="Destaque do Espaço">
-                    </div>
-
-                    <!-- Textos Explicativos -->
-                    <div id="maker-panel-texts" class="maker-panel-texts">
-                        <!-- Gerado via JavaScript -->
-                    </div>
-
-                    <!-- Lista de Recursos & Equipamentos -->
-                    <div class="maker-features-label">Estrutura e Recursos Disponíveis</div>
-                    <div id="maker-panel-features" class="maker-features-grid">
-                        <!-- Gerado via JavaScript -->
-                    </div>
-
-                    <!-- Rodapé com Botões de Ação -->
-                    <div class="maker-panel-footer">
-                        <a id="maker-panel-cta-primary" class="btn-maker-primary" href="#" target="_blank" rel="noopener">
-                            Solicitar Atendimento
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <span>Saiba mais</span>
+                            <svg class="maker-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                 <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
-                        </a>
-                        <a id="maker-panel-cta-secondary" class="btn-maker-secondary" href="#" target="_blank" rel="noopener">
-                            Dúvidas e Contato
-                        </a>
+                        </div>
                     </div>
-
                 </div>
+
             </div>
 
         </div>
     </section>
 
-    <!-- SCRIPT DE INTERAÇÃO E AUTO-RESIZE DO IFRAME -->
+    <!-- ================= MODAL POP-UP (COMPATÍVEL COM MENU FIXO) ================= -->
+    <div id="maker-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <!-- Botão de Fechar com destaque e acessibilidade -->
+            <button class="modal-close" id="maker-modal-close" aria-label="Fechar pop-up">&times;</button>
+            
+            <div class="modal-header">
+                <span class="modal-badge" id="maker-modal-badge">Rede MIT</span>
+                <h3 id="maker-modal-title">Fab Lab Inatel</h3>
+                <p id="maker-modal-subtitle">Subtítulo explicativo</p>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Imagem do Espaço -->
+                <div class="maker-modal-img-wrap">
+                    <img id="maker-modal-img" class="maker-modal-img" src="" alt="Espaço Maker">
+                </div>
+
+                <!-- Textos Explicativos -->
+                <div id="maker-modal-texts" class="maker-modal-texts">
+                    <!-- Renderizado dinamicamente via maker.js -->
+                </div>
+
+                <!-- Grid de Recursos e Equipamentos -->
+                <div class="maker-modal-section-title">Estrutura e Recursos Disponíveis</div>
+                <div id="maker-modal-features" class="maker-modal-features-grid">
+                    <!-- Renderizado dinamicamente via maker.js -->
+                </div>
+
+                <!-- Botões de Ação no Rodapé -->
+                <div class="maker-modal-footer">
+                    <a id="maker-modal-cta-primary" class="btn-maker-primary" href="#" target="_blank" rel="noopener">
+                        <span>Solicitar Atendimento</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a id="maker-modal-cta-secondary" class="btn-maker-secondary" href="#" target="_blank" rel="noopener">
+                        Dúvidas e Contato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE INTERAÇÃO -->
     <script src="maker.js"></script>
 </body>
 </html>

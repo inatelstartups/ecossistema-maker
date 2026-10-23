@@ -1,7 +1,7 @@
 <!-- ======================================================================
      BLOCO EMBED (IFRAME) — ECOSSISTEMA MAKER E FÍGITAL (INATEL STARTUPS)
-     Layout com Expansão Inline (Imune a Menus Fixos e Sem Modais Flutuantes)
-     Basta colar este código onde a seção deve aparecer na página.
+     Compatível com cabeçalhos e menus fixos institucionais do Inatel
+     Basta colar este código no local desejado da página.
      ====================================================================== -->
 <div id="inatel-maker-embed-wrapper" style="width: 100%; overflow: hidden;">
     <iframe
@@ -16,13 +16,25 @@
 </div>
 
 <script>
-    // Ajusta automaticamente a altura do frame em tempo real (ao abrir detalhes dos espaços ou redimensionar a tela)
+    // Gerenciador inteligente de altura do frame e abertura de pop-up
     window.addEventListener('message', function (event) {
-        if (event.data && event.data.type === 'inatel-maker-resize' && event.data.height) {
-            var iframe = document.getElementById('inatel-maker-iframe');
-            if (iframe) {
-                iframe.style.height = event.data.height + 'px';
-            }
+        if (!event.data) return;
+        var iframe = document.getElementById('inatel-maker-iframe');
+        if (!iframe) return;
+
+        // Redimensionamento natural da seção
+        if (event.data.type === 'inatel-maker-resize' && event.data.height) {
+            iframe.style.height = event.data.height + 'px';
+        }
+
+        // Expansão ao abrir o pop-up modal para acomodação perfeita
+        if (event.data.type === 'inatel-maker-modal-opened') {
+            iframe.style.height = Math.max(920, event.data.height || 920) + 'px';
+        }
+
+        // Retorno da altura normal ao fechar o pop-up
+        if (event.data.type === 'inatel-maker-modal-closed') {
+            iframe.style.height = '580px';
         }
     });
 </script>
