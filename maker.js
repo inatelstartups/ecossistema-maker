@@ -5,6 +5,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const fablabClose = fablabOverlay ? fablabOverlay.querySelector('.modal-close') : null;
     const fablabTrigger = document.getElementById('fablab-trigger');
 
+    function notifyModalOpened() {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'inatel-maker-modal-opened', height: Math.max(document.body.scrollHeight, 950) }, '*');
+        }
+    }
+
+    function notifyModalClosed() {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'inatel-maker-modal-closed' }, '*');
+        }
+    }
+
+    function notifyHeight() {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'inatel-maker-resize',
+                height: document.documentElement.scrollHeight || document.body.scrollHeight
+            }, '*');
+        }
+    }
+    window.addEventListener('load', notifyHeight);
+    window.addEventListener('resize', notifyHeight);
+
     function openFablabModal(e) {
         if (e) {
             e.preventDefault();
@@ -14,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fablabOverlay.classList.add('open');
             fablabOverlay.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            notifyModalOpened();
         }
     }
 
@@ -22,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fablabOverlay.classList.remove('open');
             fablabOverlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            notifyModalClosed();
         }
     }
 
@@ -58,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             labIdeacaoOverlay.classList.add('open');
             labIdeacaoOverlay.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            notifyModalOpened();
         }
     }
 
@@ -66,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             labIdeacaoOverlay.classList.remove('open');
             labIdeacaoOverlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            notifyModalClosed();
         }
     }
 
@@ -102,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inatalksOverlay.classList.add('open');
             inatalksOverlay.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            notifyModalOpened();
         }
     }
 
@@ -110,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inatalksOverlay.classList.remove('open');
             inatalksOverlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            notifyModalClosed();
         }
     }
 
