@@ -1,0 +1,28 @@
+<!-- ======================================================================
+     BLOCO EMBED (IFRAME) — ECOSSISTEMA MAKER E FÍGITAL (INATEL STARTUPS)
+     Layout com Expansão Inline (Imune a Menus Fixos e Sem Modais Flutuantes)
+     Basta colar este código onde a seção deve aparecer na página.
+     ====================================================================== -->
+<div id="inatel-maker-embed-wrapper" style="width: 100%; overflow: hidden;">
+    <iframe
+        id="inatel-maker-iframe"
+        src="https://inatelstartups.github.io/ecossistema-maker/"
+        title="Ecossistema Maker e Fígital - Inatel Startups"
+        style="width: 100%; min-height: 580px; border: none; display: block; background: transparent;"
+        scrolling="no"
+        loading="lazy"
+        allowtransparency="true"
+    ></iframe>
+</div>
+
+<script>
+    // Ajusta automaticamente a altura do frame em tempo real (ao abrir detalhes dos espaços ou redimensionar a tela)
+    window.addEventListener('message', function (event) {
+        if (event.data && event.data.type === 'inatel-maker-resize' && event.data.height) {
+            var iframe = document.getElementById('inatel-maker-iframe');
+            if (iframe) {
+                iframe.style.height = event.data.height + 'px';
+            }
+        }
+    });
+</script>
