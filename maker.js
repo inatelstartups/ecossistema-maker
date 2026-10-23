@@ -1,111 +1,143 @@
-/* ======================================================================
-   INATEL STARTUPS — DATA E HANDLERS PARA ECOSSISTEMA MAKER E FÍGITAL
-   Exatamente igual ao site oficial, com abertura abaixo do menu fixo
-   ====================================================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
-    const isInIframe = window.self !== window.top;
-    if (isInIframe) {
-        document.body.classList.add('in-iframe');
-    }
 
-    const allModals = document.querySelectorAll('.modal-overlay');
+    /* ================= FABLAB MODAL HANDLERS ================= */
+    const fablabOverlay = document.getElementById('fablab-modal');
+    const fablabClose = fablabOverlay ? fablabOverlay.querySelector('.modal-close') : null;
+    const fablabTrigger = document.getElementById('fablab-trigger');
 
-    function notifyParentResize() {
-        if (!isInIframe) return;
-        try {
-            const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-            window.parent.postMessage({
-                type: 'inatel-maker-resize',
-                height: height
-            }, '*');
-        } catch (e) {}
-    }
-
-    function openModalById(modalId) {
-        const modal = document.getElementById(modalId);
-        if (!modal) return;
-
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = isInIframe ? '' : 'hidden';
-
-        if (isInIframe) {
-            window.parent.postMessage({
-                type: 'inatel-maker-modal-opened',
-                height: 920
-            }, '*');
+    function openFablabModal(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        if (fablabOverlay) {
+            fablabOverlay.classList.add('open');
+            fablabOverlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
         }
     }
 
-    function closeAllModals() {
-        allModals.forEach(modal => {
-            modal.classList.remove('open');
-            modal.setAttribute('aria-hidden', 'true');
-        });
-        document.body.style.overflow = '';
-
-        if (isInIframe) {
-            window.parent.postMessage({
-                type: 'inatel-maker-modal-closed'
-            }, '*');
-            notifyParentResize();
+    function closeFablabModal() {
+        if (fablabOverlay) {
+            fablabOverlay.classList.remove('open');
+            fablabOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
         }
     }
 
-    // Clique nos cards Maker
-    const makerCards = document.querySelectorAll('.maker-card');
-    makerCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            const targetId = card.getAttribute('data-modal-target');
-            if (targetId) {
-                openModalById(targetId);
+    const fablabCard = fablabTrigger ? fablabTrigger.closest('.maker-card') : null;
+    if (fablabCard) {
+        fablabCard.addEventListener('click', openFablabModal);
+        fablabCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openFablabModal();
             }
         });
-    });
+    }
+    if (fablabClose) {
+        fablabClose.addEventListener('click', closeFablabModal);
+    }
+    if (fablabOverlay) {
+        fablabOverlay.addEventListener('click', (e) => {
+            if (e.target === fablabOverlay) closeFablabModal();
+        });
+    }
 
-    // Clique nos botões "Saiba mais"
-    const triggers = document.querySelectorAll('.maker-trigger');
-    triggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
+    /* ================= LAB DE IDEAÇÃO MODAL HANDLERS ================= */
+    const labIdeacaoOverlay = document.getElementById('lab-ideacao-modal');
+    const labIdeacaoClose = labIdeacaoOverlay ? labIdeacaoOverlay.querySelector('.modal-close') : null;
+    const labIdeacaoTrigger = document.getElementById('lab-ideacao-trigger');
+
+    function openLabIdeacaoModal(e) {
+        if (e) {
+            e.preventDefault();
             e.stopPropagation();
-            const targetId = trigger.getAttribute('data-target');
-            if (targetId) {
-                openModalById(targetId);
+        }
+        if (labIdeacaoOverlay) {
+            labIdeacaoOverlay.classList.add('open');
+            labIdeacaoOverlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeLabIdeacaoModal() {
+        if (labIdeacaoOverlay) {
+            labIdeacaoOverlay.classList.remove('open');
+            labIdeacaoOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    const labIdeacaoCard = labIdeacaoTrigger ? labIdeacaoTrigger.closest('.maker-card') : null;
+    if (labIdeacaoCard) {
+        labIdeacaoCard.addEventListener('click', openLabIdeacaoModal);
+        labIdeacaoCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLabIdeacaoModal();
             }
         });
-    });
+    }
+    if (labIdeacaoClose) {
+        labIdeacaoClose.addEventListener('click', closeLabIdeacaoModal);
+    }
+    if (labIdeacaoOverlay) {
+        labIdeacaoOverlay.addEventListener('click', (e) => {
+            if (e.target === labIdeacaoOverlay) closeLabIdeacaoModal();
+        });
+    }
 
-    // Botões de fechar
-    const closeButtons = document.querySelectorAll('.modal-close');
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    /* ================= INATALKS MODAL HANDLERS ================= */
+    const inatalksOverlay = document.getElementById('inatalks-modal');
+    const inatalksClose = inatalksOverlay ? inatalksOverlay.querySelector('.modal-close') : null;
+    const inatalksTrigger = document.getElementById('inatalks-trigger');
+
+    function openInatalksModal(e) {
+        if (e) {
+            e.preventDefault();
             e.stopPropagation();
-            closeAllModals();
-        });
-    });
+        }
+        if (inatalksOverlay) {
+            inatalksOverlay.classList.add('open');
+            inatalksOverlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
 
-    // Fechar ao clicar no backdrop escuro
-    allModals.forEach(modal => {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeAllModals();
+    function closeInatalksModal() {
+        if (inatalksOverlay) {
+            inatalksOverlay.classList.remove('open');
+            inatalksOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    const inatalksCard = inatalksTrigger ? inatalksTrigger.closest('.maker-card') : null;
+    if (inatalksCard) {
+        inatalksCard.addEventListener('click', openInatalksModal);
+        inatalksCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openInatalksModal();
             }
         });
-    });
+    }
+    if (inatalksClose) {
+        inatalksClose.addEventListener('click', closeInatalksModal);
+    }
+    if (inatalksOverlay) {
+        inatalksOverlay.addEventListener('click', (e) => {
+            if (e.target === inatalksOverlay) closeInatalksModal();
+        });
+    }
 
-    // Fechar com a tecla ESC
+    /* Global Escape key support to close any open modal */
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            closeAllModals();
+            closeFablabModal();
+            closeLabIdeacaoModal();
+            closeInatalksModal();
         }
     });
-
-    const resizeObserver = new ResizeObserver(() => {
-        notifyParentResize();
-    });
-    resizeObserver.observe(document.body);
-    window.addEventListener('resize', notifyParentResize);
-
-    notifyParentResize();
 });
