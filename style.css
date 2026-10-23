@@ -1,3 +1,30 @@
+/* ================= BARRA LATERAL DE ROLAGEM (SCROLLBAR) IDÊNTICA AO SITE ATUAL ================= */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #065dc4;
+    border: 1px solid #066ce2;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+    background-color: #054ea6;
+}
+
+/* Firefox / Modern CSS Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #065dc4 transparent;
+}
+
 :root {
     --bg-main: #060B1E;
     --bg-alt: #030611;
@@ -346,6 +373,30 @@ main.hub-main {
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 94, 0, 0.1);
     color: var(--text-light);
     margin-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #065dc4 transparent;
+}
+
+.hub-main .modal-content::-webkit-scrollbar,
+.hub-main .modal-overlay::-webkit-scrollbar {
+    width: 8px;
+}
+
+.hub-main .modal-content::-webkit-scrollbar-track,
+.hub-main .modal-overlay::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hub-main .modal-content::-webkit-scrollbar-thumb,
+.hub-main .modal-overlay::-webkit-scrollbar-thumb {
+    background-color: #065dc4;
+    border: 1px solid #066ce2;
+    border-radius: 10px;
+}
+
+.hub-main .modal-content::-webkit-scrollbar-thumb:hover,
+.hub-main .modal-overlay::-webkit-scrollbar-thumb:hover {
+    background-color: #054ea6;
 }
 
 .hub-main .modal-overlay.open .modal-content {
